@@ -1,0 +1,6 @@
+{
+    "sonarlint.connectedMode.project": {
+        "connectionId": "sonarsource-cfamily-examples",
+        "projectKey": "aagirre-windows-msbuild-vscoverage-gh-actions-sc"
+    }
+}
