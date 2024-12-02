@@ -17,12 +17,21 @@ jobs:
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
 
+      # - name: Add sonar host to hosts file
+      #   run: |
+      #     echo 10.20.81.230 sonarit.orona.es | Out-File -Append -FilePath C:\Windows\System32\drivers\etc\hosts
+      
       - name: Add sonar host to hosts file
         run: |
-          echo 10.20.81.230 sonarit.orona.es | Out-File -Append -FilePath C:\Windows\System32\drivers\etc\hosts
-  
+          Add-Content -Path "C:\Windows\System32\drivers\etc\hosts" -Value "10.20.81.230 sonarit.orona.es"
+      
+      - name: Verify hosts file
+        run: |
+          Get-Content C:\Windows\System32\drivers\etc\hosts
+
       - name: Set up msbuild
         uses: microsoft/setup-msbuild@v2
+
       - name: Setup VSTest.console.exe # Needed to run tests and generate coverage
         uses: darenm/Setup-VSTest@v1.2
 
@@ -32,16 +41,19 @@ jobs:
       - name: Run build-wrapper
         run: |
           build-wrapper-win-x86-64 --out-dir ${{ env.BUILD_WRAPPER_OUT_DIR }} msbuild sonar_scanner_example.vcxproj /t:rebuild /nodeReuse:false
+
       - name: Build tests
         run: |
           msbuild test1\test1.vcxproj
           msbuild test2\test2.vcxproj
+
       - name: Run tests with coverage
         run: >
           vstest.console.exe test1\*\test1.dll test2\*\test2.dll 
           /EnableCodeCoverage 
           /Collect:"Code Coverage;Format=Xml" 
           /ResultsDirectory:"${{ env.COVERAGE_RESULTS }}"
+
       - name: Run sonar-scanner
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
