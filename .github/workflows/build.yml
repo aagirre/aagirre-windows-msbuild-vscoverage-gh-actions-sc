@@ -29,6 +29,10 @@ jobs:
         run: |
           Get-Content C:\Windows\System32\drivers\etc\hosts
 
+      # Add this step to check network connectivity
+      - name: Check connectivity to SonarQube server
+        run: curl -v https://sonarit.orona.es
+
       - name: Set up msbuild
         uses: microsoft/setup-msbuild@v2
 
