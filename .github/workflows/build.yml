@@ -17,6 +17,10 @@ jobs:
         with:
           fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
 
+      - name: Add sonar host to hosts file
+        run: |
+          echo 10.20.81.230 sonarit.orona.es | Out-File -Append -FilePath C:\Windows\System32\drivers\etc\hosts
+  
       - name: Set up msbuild
         uses: microsoft/setup-msbuild@v2
       - name: Setup VSTest.console.exe # Needed to run tests and generate coverage
