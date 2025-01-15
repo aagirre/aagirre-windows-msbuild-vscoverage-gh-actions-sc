@@ -22,7 +22,7 @@ int myfun(bool b, int (*callback)(int)) {
     return 0;
   }
 
-  //return 42; // intentional dead code
+  return 42; // intentional dead code
 }
 
 int sumar(int a, int b) {
