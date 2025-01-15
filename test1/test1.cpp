@@ -13,5 +13,11 @@ namespace tests {
     TEST_METHOD(TestMyFun) {
       myfun(true, &id);
     }
+
+    TEST_METHOD(TestSumar) {
+      int result = sumar(3, 5);
+      Assert::AreEqual(8, result, L"sumar(3, 5) should return 8");
+    }
+
   };
 }
