@@ -10,12 +10,19 @@ int myfun(bool b, int (*callback)(int)) {
     num = 15 + num;
   }
 
-  if (callback != nullptr) {
+  if (callback != 0) {
+    ;
+    ; // intentional extra-semicolon
+  }
+
+  if (callback == nullptr) {
     return (*callback)(3); // intentional nullptr dereference
   }
   else {
-    return num;
+    return 0;
   }
+
+  //return 42; // intentional dead code
 }
 
 int sumar(int a, int b) {
