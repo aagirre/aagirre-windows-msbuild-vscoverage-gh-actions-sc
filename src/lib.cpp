@@ -25,6 +25,6 @@ int myfun(bool b, int (*callback)(int)) {
   return 42; // intentional dead code
 }
 
-int sumar(int a, int b) {
-  return a + b;
-}
+//int sumar(int a, int b) {
+//  return a + b;
+//}
