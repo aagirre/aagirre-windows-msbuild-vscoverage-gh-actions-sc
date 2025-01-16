@@ -19,6 +19,6 @@ int myfun(bool b, int (*callback)(int)) {
 
 }
 
-//int sumar(int a, int b) {
-//  return a + b;
-//}
+int sumar(int a, int b) {
+  return a + b;
+}
